@@ -1,0 +1,15 @@
+services:
+  web1:
+    image: mcr.microsoft.com/windows/servercore:ltsc2019
+    command: ['cmd.exe', '/c', 'ping -n 1800 127.0.0.1 >NUL']
+    volumes:
+      - ./tools:c:/tools
+      - ./data:c:/data
+      - shared-data:c:/data-backup
+  web2:
+    image: mcr.microsoft.com/windows/servercore:ltsc2019
+    command: ['cmd.exe', '/c', 'ping -n 1800 127.0.0.1 >NUL']
+    volumes:
+      - shared-data:c:/data
+volumes:
+  shared-data:
